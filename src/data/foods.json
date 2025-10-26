@@ -1,0 +1,481 @@
+[
+  {
+    "id": "apple",
+    "name": "Apple",
+    "slug": "apple",
+    "category": "fruit",
+    "image": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=800&h=600&fit=crop",
+    "shortDescription": "Crisp and sweet fruit packed with fiber and antioxidants",
+    "description": "Apples are one of the most popular fruits worldwide, known for their crisp texture and sweet-tart flavor. They're an excellent source of dietary fiber, vitamin C, and various antioxidants that support overall health.",
+    "nutritionalFacts": {
+      "calories": 52,
+      "protein": 0.3,
+      "carbs": 14,
+      "fiber": 2.4,
+      "sugar": 10,
+      "fat": 0.2,
+      "vitamins": {
+        "C": 4.6,
+        "K": 2.2,
+        "B6": 0.041
+      },
+      "minerals": {
+        "potassium": 107,
+        "calcium": 6,
+        "magnesium": 5
+      }
+    },
+    "benefits": [
+      {
+        "category": "heart",
+        "description": "Rich in soluble fiber that helps lower cholesterol",
+        "icon": "❤️"
+      },
+      {
+        "category": "digestion",
+        "description": "High fiber content promotes healthy digestion",
+        "icon": "🌿"
+      },
+      {
+        "category": "immunity",
+        "description": "Vitamin C and antioxidants boost immune system",
+        "icon": "🛡️"
+      }
+    ],
+    "tags": ["fiber", "vitamin-c", "antioxidants", "low-calorie"],
+    "season": ["fall", "winter"],
+    "funFact": "An apple tree can live for over 100 years and produce fruit for 50+ years!"
+  },
+  {
+    "id": "spinach",
+    "name": "Spinach",
+    "slug": "spinach",
+    "category": "vegetable",
+    "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=800&h=600&fit=crop",
+    "shortDescription": "Nutrient-dense leafy green rich in iron and vitamins",
+    "description": "Spinach is a superfood leafy green vegetable that's incredibly nutrient-dense. It's packed with iron, vitamins A, C, and K, folate, and antioxidants that support eye health, bone health, and overall wellness.",
+    "nutritionalFacts": {
+      "calories": 23,
+      "protein": 2.9,
+      "carbs": 3.6,
+      "fiber": 2.2,
+      "sugar": 0.4,
+      "fat": 0.4,
+      "vitamins": {
+        "A": 469,
+        "C": 28.1,
+        "K": 483,
+        "folate": 194
+      },
+      "minerals": {
+        "iron": 2.7,
+        "calcium": 99,
+        "magnesium": 79,
+        "potassium": 558
+      }
+    },
+    "benefits": [
+      {
+        "category": "bones",
+        "description": "High in vitamin K and calcium for strong bones",
+        "icon": "🦴"
+      },
+      {
+        "category": "eyes",
+        "description": "Lutein and zeaxanthin protect eye health",
+        "icon": "👁️"
+      },
+      {
+        "category": "energy",
+        "description": "Iron content helps prevent anemia and boosts energy",
+        "icon": "⚡"
+      }
+    ],
+    "tags": ["iron", "vitamin-k", "folate", "low-calorie", "superfood"],
+    "season": ["spring", "fall", "winter"],
+    "funFact": "Popeye's love for spinach increased spinach consumption by 33% in the US!"
+  },
+  {
+    "id": "blueberry",
+    "name": "Blueberry",
+    "slug": "blueberry",
+    "category": "fruit",
+    "image": "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=800&h=600&fit=crop",
+    "shortDescription": "Antioxidant powerhouse supporting brain and heart health",
+    "description": "Blueberries are small but mighty fruits packed with antioxidants, particularly anthocyanins, which give them their deep blue color. They're excellent for brain health, memory, and cardiovascular wellness.",
+    "nutritionalFacts": {
+      "calories": 57,
+      "protein": 0.7,
+      "carbs": 14.5,
+      "fiber": 2.4,
+      "sugar": 10,
+      "fat": 0.3,
+      "vitamins": {
+        "C": 9.7,
+        "K": 19.3,
+        "B6": 0.052
+      },
+      "minerals": {
+        "potassium": 77,
+        "calcium": 6,
+        "magnesium": 6
+      }
+    },
+    "benefits": [
+      {
+        "category": "brain",
+        "description": "Anthocyanins improve memory and cognitive function",
+        "icon": "🧠"
+      },
+      {
+        "category": "heart",
+        "description": "Antioxidants support cardiovascular health",
+        "icon": "❤️"
+      },
+      {
+        "category": "skin",
+        "description": "Vitamin C promotes collagen production",
+        "icon": "✨"
+      }
+    ],
+    "tags": ["antioxidants", "anthocyanins", "vitamin-c", "brain-food"],
+    "season": ["summer"],
+    "funFact": "Blueberries are one of the only naturally blue foods in nature!"
+  },
+  {
+    "id": "avocado",
+    "name": "Avocado",
+    "slug": "avocado",
+    "category": "fruit",
+    "image": "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=800&h=600&fit=crop",
+    "shortDescription": "Creamy fruit rich in healthy fats and potassium",
+    "description": "Avocados are unique fruits that are rich in monounsaturated fats, fiber, and potassium. They support heart health, nutrient absorption, and provide sustained energy.",
+    "nutritionalFacts": {
+      "calories": 160,
+      "protein": 2,
+      "carbs": 8.5,
+      "fiber": 6.7,
+      "sugar": 0.7,
+      "fat": 14.7,
+      "vitamins": {
+        "K": 21,
+        "C": 10,
+        "E": 2.1,
+        "folate": 20
+      },
+      "minerals": {
+        "potassium": 485,
+        "magnesium": 29,
+        "calcium": 12
+      }
+    },
+    "benefits": [
+      {
+        "category": "heart",
+        "description": "Monounsaturated fats support heart health",
+        "icon": "❤️"
+      },
+      {
+        "category": "skin",
+        "description": "Healthy fats and vitamin E nourish skin",
+        "icon": "✨"
+      },
+      {
+        "category": "weight",
+        "description": "Fiber and healthy fats promote satiety",
+        "icon": "⚖️"
+      }
+    ],
+    "tags": ["healthy-fats", "potassium", "fiber", "vitamin-e"],
+    "season": ["year-round"],
+    "funFact": "Avocados are actually berries, and they ripen only after being picked!"
+  },
+  {
+    "id": "carrot",
+    "name": "Carrot",
+    "slug": "carrot",
+    "category": "vegetable",
+    "image": "https://images.unsplash.com/photo-1445282768818-728615cc910a?w=800&h=600&fit=crop",
+    "shortDescription": "Orange root vegetable excellent for eye health",
+    "description": "Carrots are crunchy, sweet root vegetables that are exceptionally high in beta-carotene, which the body converts to vitamin A. They're excellent for eye health, immune function, and skin health.",
+    "nutritionalFacts": {
+      "calories": 41,
+      "protein": 0.9,
+      "carbs": 9.6,
+      "fiber": 2.8,
+      "sugar": 4.7,
+      "fat": 0.2,
+      "vitamins": {
+        "A": 835,
+        "C": 5.9,
+        "K": 13.2,
+        "B6": 0.138
+      },
+      "minerals": {
+        "potassium": 320,
+        "calcium": 33,
+        "magnesium": 12
+      }
+    },
+    "benefits": [
+      {
+        "category": "eyes",
+        "description": "Beta-carotene supports healthy vision",
+        "icon": "👁️"
+      },
+      {
+        "category": "skin",
+        "description": "Vitamin A promotes healthy skin cell production",
+        "icon": "✨"
+      },
+      {
+        "category": "immunity",
+        "description": "Antioxidants boost immune system function",
+        "icon": "🛡️"
+      }
+    ],
+    "tags": ["beta-carotene", "vitamin-a", "fiber", "low-calorie"],
+    "season": ["fall", "winter", "spring"],
+    "funFact": "Carrots were originally purple! Orange carrots were developed in the Netherlands."
+  },
+  {
+    "id": "basil",
+    "name": "Basil",
+    "slug": "basil",
+    "category": "herb",
+    "image": "https://images.unsplash.com/photo-1618164436241-4473940d1f5c?w=800&h=600&fit=crop",
+    "shortDescription": "Aromatic herb with anti-inflammatory properties",
+    "description": "Basil is a fragrant herb belonging to the mint family. It's rich in essential oils, antioxidants, and has natural anti-inflammatory and antibacterial properties. It's excellent for digestive health and stress relief.",
+    "nutritionalFacts": {
+      "calories": 22,
+      "protein": 3.2,
+      "carbs": 2.6,
+      "fiber": 1.6,
+      "sugar": 0.3,
+      "fat": 0.6,
+      "vitamins": {
+        "A": 264,
+        "C": 18,
+        "K": 414.8,
+        "folate": 68
+      },
+      "minerals": {
+        "calcium": 177,
+        "iron": 3.2,
+        "magnesium": 64,
+        "potassium": 295
+      }
+    },
+    "benefits": [
+      {
+        "category": "digestion",
+        "description": "Essential oils aid in digestion and reduce bloating",
+        "icon": "🌿"
+      },
+      {
+        "category": "immunity",
+        "description": "Antibacterial properties support immune health",
+        "icon": "🛡️"
+      },
+      {
+        "category": "brain",
+        "description": "Compounds may help reduce stress and improve focus",
+        "icon": "🧠"
+      }
+    ],
+    "tags": ["essential-oils", "anti-inflammatory", "vitamin-k", "antioxidants"],
+    "season": ["summer"],
+    "funFact": "Basil is considered sacred in Hindu culture and is often grown near temples!"
+  },
+  {
+    "id": "banana",
+    "name": "Banana",
+    "slug": "banana",
+    "category": "fruit",
+    "image": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=800&h=600&fit=crop",
+    "shortDescription": "Energy-rich fruit high in potassium and vitamin B6",
+    "description": "Bananas are one of the world's most popular fruits, known for their natural sweetness and energy-boosting properties. They're rich in potassium, vitamin B6, and natural sugars that provide quick energy.",
+    "nutritionalFacts": {
+      "calories": 89,
+      "protein": 1.1,
+      "carbs": 23,
+      "fiber": 2.6,
+      "sugar": 12,
+      "fat": 0.3,
+      "vitamins": {
+        "B6": 0.4,
+        "C": 8.7,
+        "folate": 20
+      },
+      "minerals": {
+        "potassium": 358,
+        "magnesium": 27,
+        "calcium": 5
+      }
+    },
+    "benefits": [
+      {
+        "category": "energy",
+        "description": "Natural sugars provide quick, sustained energy",
+        "icon": "⚡"
+      },
+      {
+        "category": "heart",
+        "description": "Potassium supports healthy blood pressure",
+        "icon": "❤️"
+      },
+      {
+        "category": "brain",
+        "description": "Vitamin B6 supports neurotransmitter production",
+        "icon": "🧠"
+      }
+    ],
+    "tags": ["potassium", "vitamin-b6", "energy", "natural-sugars"],
+    "season": ["year-round"],
+    "funFact": "Bananas are berries, but strawberries aren't! Botanically speaking, that is."
+  },
+  {
+    "id": "broccoli",
+    "name": "Broccoli",
+    "slug": "broccoli",
+    "category": "vegetable",
+    "image": "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=800&h=600&fit=crop",
+    "shortDescription": "Cruciferous vegetable packed with vitamin C and fiber",
+    "description": "Broccoli is a nutrient-dense cruciferous vegetable that's exceptionally high in vitamin C, fiber, and contains compounds that may have cancer-fighting properties. It's also rich in vitamin K and folate.",
+    "nutritionalFacts": {
+      "calories": 34,
+      "protein": 2.8,
+      "carbs": 7,
+      "fiber": 2.6,
+      "sugar": 1.5,
+      "fat": 0.4,
+      "vitamins": {
+        "C": 89.2,
+        "K": 101.6,
+        "A": 31,
+        "folate": 63
+      },
+      "minerals": {
+        "potassium": 316,
+        "calcium": 47,
+        "iron": 0.7,
+        "magnesium": 21
+      }
+    },
+    "benefits": [
+      {
+        "category": "immunity",
+        "description": "Extremely high vitamin C content boosts immunity",
+        "icon": "🛡️"
+      },
+      {
+        "category": "bones",
+        "description": "Vitamin K and calcium support bone health",
+        "icon": "🦴"
+      },
+      {
+        "category": "digestion",
+        "description": "High fiber content promotes digestive health",
+        "icon": "🌿"
+      }
+    ],
+    "tags": ["vitamin-c", "fiber", "cruciferous", "low-calorie", "vitamin-k"],
+    "season": ["fall", "winter", "spring"],
+    "funFact": "Broccoli is actually a flower! We eat the flower buds before they bloom."
+  },
+  {
+    "id": "turmeric",
+    "name": "Turmeric",
+    "slug": "turmeric",
+    "category": "herb",
+    "image": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=800&h=600&fit=crop",
+    "shortDescription": "Golden spice with powerful anti-inflammatory properties",
+    "description": "Turmeric is a vibrant golden spice that contains curcumin, a compound with powerful anti-inflammatory and antioxidant properties. It has been used in traditional medicine for thousands of years.",
+    "nutritionalFacts": {
+      "calories": 354,
+      "protein": 7.8,
+      "carbs": 65,
+      "fiber": 21,
+      "sugar": 3.2,
+      "fat": 10,
+      "vitamins": {
+        "C": 25.9,
+        "B6": 1.8,
+        "folate": 7
+      },
+      "minerals": {
+        "iron": 41.4,
+        "potassium": 2525,
+        "calcium": 183,
+        "magnesium": 193
+      }
+    },
+    "benefits": [
+      {
+        "category": "immunity",
+        "description": "Curcumin has powerful anti-inflammatory effects",
+        "icon": "🛡️"
+      },
+      {
+        "category": "brain",
+        "description": "May support cognitive function and memory",
+        "icon": "🧠"
+      },
+      {
+        "category": "heart",
+        "description": "Antioxidants support cardiovascular health",
+        "icon": "❤️"
+      }
+    ],
+    "tags": ["curcumin", "anti-inflammatory", "antioxidants", "traditional-medicine"],
+    "season": ["year-round"],
+    "funFact": "Turmeric has been used as a natural dye for over 4,000 years!"
+  },
+  {
+    "id": "strawberry",
+    "name": "Strawberry",
+    "slug": "strawberry",
+    "category": "fruit",
+    "image": "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=800&h=600&fit=crop",
+    "shortDescription": "Sweet berry loaded with vitamin C and antioxidants",
+    "description": "Strawberries are delicious, heart-shaped berries that are incredibly rich in vitamin C, manganese, and antioxidants. They're low in calories but high in flavor and nutrients that support immune and heart health.",
+    "nutritionalFacts": {
+      "calories": 32,
+      "protein": 0.7,
+      "carbs": 7.7,
+      "fiber": 2,
+      "sugar": 4.9,
+      "fat": 0.3,
+      "vitamins": {
+        "C": 58.8,
+        "folate": 24,
+        "K": 2.2
+      },
+      "minerals": {
+        "potassium": 153,
+        "calcium": 16,
+        "magnesium": 13
+      }
+    },
+    "benefits": [
+      {
+        "category": "immunity",
+        "description": "Exceptionally high vitamin C content",
+        "icon": "🛡️"
+      },
+      {
+        "category": "skin",
+        "description": "Antioxidants protect against skin damage",
+        "icon": "✨"
+      },
+      {
+        "category": "heart",
+        "description": "Anthocyanins support cardiovascular health",
+        "icon": "❤️"
+      }
+    ],
+    "tags": ["vitamin-c", "antioxidants", "low-calorie", "anthocyanins"],
+    "season": ["spring", "summer"],
+    "funFact": "Strawberries are the only fruit with seeds on the outside - about 200 seeds per berry!"
+  }
+]
