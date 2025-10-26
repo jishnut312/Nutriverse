@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef, memo } from 'react';
 import { Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,50 +10,61 @@ interface SearchBarProps {
   className?: string;
 }
 
-export default function SearchBar({ 
+const SearchBar = memo(function SearchBar({ 
   onSearch, 
   placeholder = "Search for fruits, vegetables, or herbs...",
   className = ""
 }: SearchBarProps) {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+  const onSearchRef = useRef(onSearch);
 
-  // Debounced search
+  // Update ref when onSearch changes
+  useEffect(() => {
+    onSearchRef.current = onSearch;
+  }, [onSearch]);
+
+  // Debounced search - prevent immediate calls
   useEffect(() => {
     const timer = setTimeout(() => {
-      onSearch(query);
-    }, 300);
+      onSearchRef.current(query);
+    }, 300); // Standard debounce delay
 
     return () => clearTimeout(timer);
-  }, [query, onSearch]);
+  }, [query]);
 
   const clearSearch = () => {
     setQuery('');
-    onSearch('');
+    onSearchRef.current('');
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
   };
 
   return (
     <div className={`relative ${className}`}>
-      <motion.div
-        animate={{
-          scale: isFocused ? 1.02 : 1,
-        }}
-        transition={{ duration: 0.2 }}
-        className="relative"
-      >
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Search className="h-5 w-5 text-gray-400" />
-        </div>
-        
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          placeholder={placeholder}
-          className="block w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
-        />
+      <div className="relative">
+        <form onSubmit={handleSubmit}>
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-gray-400" />
+          </div>
+          
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+              }
+            }}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            placeholder={placeholder}
+            className="block w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+          />
+        </form>
         
         <AnimatePresence>
           {query && (
@@ -69,7 +80,7 @@ export default function SearchBar({
             </motion.button>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       {/* Search suggestions or recent searches could go here */}
       <AnimatePresence>
@@ -92,4 +103,6 @@ export default function SearchBar({
       </AnimatePresence>
     </div>
   );
-}
+});
+
+export default SearchBar;

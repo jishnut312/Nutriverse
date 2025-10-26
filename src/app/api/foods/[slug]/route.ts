@@ -4,11 +4,12 @@ import { Food } from '@/types/food';
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    const resolvedParams = await params;
     const foods = foodsData as Food[];
-    const food = foods.find(f => f.slug === params.slug);
+    const food = foods.find(f => f.slug === resolvedParams.slug);
 
     if (!food) {
       return NextResponse.json(

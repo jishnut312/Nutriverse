@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, use } from 'react';
+import { useState, useEffect, useMemo, use, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { notFound } from 'next/navigation';
 import FoodCard from '@/components/FoodCard';
@@ -31,8 +31,31 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     const loadFoods = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/foods');
-        if (!response.ok) {
+        // Build API URL with parameters
+        const params = new URLSearchParams();
+        params.append('category', resolvedParams.category);
+        
+        if (searchQuery) {
+          params.append('search', searchQuery);
+        }
+        
+        if (filters.vitamin) {
+          params.append('vitamin', filters.vitamin);
+        }
+        
+        if (filters.healthGoal) {
+          params.append('healthGoal', filters.healthGoal);
+        }
+        
+        if (filters.season) {
+          params.append('season', filters.season);
+        }
+        
+        const response = await fetch(`/api/foods?${params.toString()}`);
+        if (response.ok) {
+          const apiData = await response.json();
+          setFoods(apiData);
+        } else {
           // Fallback to local import
           const { default: foodsData } = await import('@/data/foods.json');
           const allFoods = foodsData as Food[];
@@ -41,48 +64,31 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         }
       } catch (error) {
         console.error('Error loading foods:', error);
+        // Fallback to local import
+        const { default: foodsData } = await import('@/data/foods.json');
+        const allFoods = foodsData as Food[];
+        const categoryFoods = allFoods.filter(food => food.category === resolvedParams.category);
+        setFoods(categoryFoods);
       } finally {
         setLoading(false);
       }
     };
 
     loadFoods();
-  }, [resolvedParams.category]);
+  }, [resolvedParams.category, searchQuery, JSON.stringify(filters)]);
 
-  // Filter and search foods
-  const filteredFoods = useMemo(() => {
-    let filtered = foods;
+  // Since API now handles filtering, just use the foods directly
+  const filteredFoods = foods;
 
-    // Apply search query
-    if (searchQuery) {
-      filtered = filtered.filter(food =>
-        food.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        food.shortDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        food.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-      );
-    }
+  // Memoize the search handler to prevent unnecessary re-renders
+  const handleSearch = useCallback((query: string) => {
+    setSearchQuery(query);
+  }, []);
 
-    // Apply filters
-    if (filters.vitamin) {
-      filtered = filtered.filter(food =>
-        food.nutritionalFacts.vitamins[filters.vitamin as keyof typeof food.nutritionalFacts.vitamins]
-      );
-    }
-
-    if (filters.healthGoal) {
-      filtered = filtered.filter(food =>
-        food.benefits.some(benefit => benefit.category === filters.healthGoal)
-      );
-    }
-
-    if (filters.season) {
-      filtered = filtered.filter(food =>
-        food.season.includes(filters.season!)
-      );
-    }
-
-    return filtered;
-  }, [foods, searchQuery, filters]);
+  // Memoize the filter handler
+  const handleFilterChange = useCallback((newFilters: FilterOptions) => {
+    setFilters(newFilters);
+  }, []);
 
   const getCategoryInfo = (category: string) => {
     switch (category) {
@@ -135,7 +141,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="relative min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section className={`bg-gradient-to-r ${categoryInfo.color} py-16`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -166,11 +172,11 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
             <div className="flex-1">
               <SearchBar
-                onSearch={setSearchQuery}
+                onSearch={handleSearch}
                 placeholder={`Search ${categoryInfo.title.toLowerCase()}...`}
               />
             </div>
-            <FilterBar onFilterChange={setFilters} />
+            <FilterBar onFilterChange={handleFilterChange} />
           </div>
           
           {/* Results count */}
@@ -204,7 +210,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <FoodCard food={food} index={index} />
+                  <FoodCard food={food} index={index} priority={index < 3} />
                 </motion.div>
               ))}
             </motion.div>

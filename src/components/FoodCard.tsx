@@ -10,9 +10,10 @@ import { useState, useEffect } from 'react';
 interface FoodCardProps {
   food: Food;
   index?: number;
+  priority?: boolean;
 }
 
-export default function FoodCard({ food, index = 0 }: FoodCardProps) {
+export default function FoodCard({ food, index = 0, priority = false }: FoodCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   // Check if food is in favorites on component mount
@@ -82,6 +83,7 @@ export default function FoodCard({ food, index = 0 }: FoodCardProps) {
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={priority}
             />
             
             {/* Favorite Button */}

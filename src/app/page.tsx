@@ -53,7 +53,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="relative min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section - Full Screen */}
       <section ref={heroRef} className="relative h-screen overflow-hidden">
         {/* Full Screen Background Image with Parallax */}
@@ -151,21 +151,20 @@ export default function Home() {
       {/* Quick Stats Section */}
       
       {/* Categories Preview Section */}
-      <section className="relative py-16 overflow-hidden">
+      <section className="relative h-screen overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/h1.jpg"
+            src="/images/h2.jpg"
             alt="Fresh organic produce background"
             fill
-            className="object-cover brightness-50 contrast-110 saturate-125"
+            className="object-cover brightness-110 contrast-110 saturate-110 scale-110"
             priority={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-secondary/10" />
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 h-full flex items-center justify-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -173,10 +172,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-heading text-gray-900 mb-4">
               Explore by Category
             </h2>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
               Discover the nutritional power of nature's bounty across different food categories
             </p>
           </motion.div>
@@ -265,6 +264,7 @@ export default function Home() {
                 </div>
               </Link>
             </motion.div>
+            </div>
           </div>
         </div>
       </section>

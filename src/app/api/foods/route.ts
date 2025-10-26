@@ -8,8 +8,11 @@ export async function GET(request: Request) {
     const category = searchParams.get('category');
     const search = searchParams.get('search');
     const vitamin = searchParams.get('vitamin');
+    const mineral = searchParams.get('mineral');
     const healthGoal = searchParams.get('healthGoal');
     const season = searchParams.get('season');
+    const nutrient = searchParams.get('nutrient');
+    const benefit = searchParams.get('benefit');
 
     let foods = foodsData as Food[];
 
@@ -38,6 +41,31 @@ export async function GET(request: Request) {
       );
     }
 
+    if (mineral) {
+      foods = foods.filter(food =>
+        food.nutritionalFacts.minerals[mineral as keyof typeof food.nutritionalFacts.minerals]
+      );
+    }
+
+    if (nutrient) {
+      const query = nutrient.toLowerCase();
+      foods = foods.filter(food => {
+        const vitamins = Object.keys(food.nutritionalFacts.vitamins).join(' ').toLowerCase();
+        const minerals = Object.keys(food.nutritionalFacts.minerals).join(' ').toLowerCase();
+        return vitamins.includes(query) || minerals.includes(query);
+      });
+    }
+
+    if (benefit) {
+      const query = benefit.toLowerCase();
+      foods = foods.filter(food =>
+        food.benefits.some(b => 
+          b.category.toLowerCase().includes(query) ||
+          b.description.toLowerCase().includes(query)
+        )
+      );
+    }
+
     if (healthGoal) {
       foods = foods.filter(food =>
         food.benefits.some(benefit => benefit.category === healthGoal)
@@ -57,6 +85,17 @@ export async function GET(request: Request) {
       isInSeason: food.season.includes(currentSeason)
     }));
 
+
+    // Sort by relevance if search query exists
+    if (search) {
+      const query = search.toLowerCase();
+      foods.sort((a, b) => {
+        const aScore = getRelevanceScore(a, query);
+        const bScore = getRelevanceScore(b, query);
+        return bScore - aScore;
+      });
+    }
+
     return NextResponse.json(foods);
   } catch (error) {
     console.error('Error fetching foods:', error);
@@ -73,6 +112,37 @@ function getCurrentSeason(month: number): string {
   if (month >= 8 && month <= 10) return 'fall';
   return 'winter';
 }
+
+function getRelevanceScore(food: Food, query: string): number {
+  let score = 0;
+  const q = query.toLowerCase();
+  
+  // Name match (highest priority)
+  if (food.name.toLowerCase().includes(q)) score += 10;
+  
+  // Short description match
+  if (food.shortDescription.toLowerCase().includes(q)) score += 5;
+  
+  // Tags match
+  food.tags.forEach(tag => {
+    if (tag.toLowerCase().includes(q)) score += 3;
+  });
+  
+  // Benefits match
+  food.benefits.forEach(benefit => {
+    if (benefit.category.toLowerCase().includes(q)) score += 4;
+    if (benefit.description.toLowerCase().includes(q)) score += 2;
+  });
+  
+  // Nutritional facts match
+  const vitamins = Object.keys(food.nutritionalFacts.vitamins).join(' ').toLowerCase();
+  const minerals = Object.keys(food.nutritionalFacts.minerals).join(' ').toLowerCase();
+  if (vitamins.includes(q)) score += 3;
+  if (minerals.includes(q)) score += 3;
+  
+  return score;
+}
+
 
 export async function POST(request: Request) {
   try {

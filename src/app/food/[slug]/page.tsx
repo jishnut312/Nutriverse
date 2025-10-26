@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { motion } from 'framer-motion';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -10,12 +10,13 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Food } from '@/types/food';
 
 interface FoodDetailPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default function FoodDetailPage({ params }: FoodDetailPageProps) {
+  const resolvedParams = use(params);
   const [food, setFood] = useState<Food | null>(null);
   const [loading, setLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -24,12 +25,15 @@ export default function FoodDetailPage({ params }: FoodDetailPageProps) {
     const loadFood = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/foods');
-        if (!response.ok) {
+        const response = await fetch(`/api/foods/${resolvedParams.slug}`);
+        if (response.ok) {
+          const apiFood = await response.json();
+          setFood(apiFood);
+        } else {
           // Fallback to local import
           const { default: foodsData } = await import('@/data/foods.json');
           const foods = foodsData as Food[];
-          const foundFood = foods.find(f => f.slug === params.slug);
+          const foundFood = foods.find(f => f.slug === resolvedParams.slug);
           setFood(foundFood || null);
         }
       } catch (error) {
@@ -41,7 +45,7 @@ export default function FoodDetailPage({ params }: FoodDetailPageProps) {
     };
 
     loadFood();
-  }, [params.slug]);
+  }, [resolvedParams.slug]);
 
   useEffect(() => {
     if (food) {
