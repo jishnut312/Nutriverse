@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🍎 NutriVerse - Discover the Power of Nature
 
 A comprehensive nutrition web application built with Next.js 15, TypeScript, and Tailwind CSS. Explore detailed nutrition information for fruits, vegetables, and herbs to make informed dietary choices.
@@ -265,3 +266,6 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 **Built with ❤️ for healthy living and informed nutrition choices.**
+# Nutriverse
+Your comprehensive guide to understanding nutrition. Discover detailed information about natural foods, their health benefits, and make informed dietary choices for optimal wellness.
+ b2e0e7fbb36dca76b15ec24baa220874014e60aa
